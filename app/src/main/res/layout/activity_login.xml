@@ -114,7 +114,7 @@
 
 
             <Button
-                android:id="@+id/phone_sign_in_button"
+                android:id="@+id/register"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
