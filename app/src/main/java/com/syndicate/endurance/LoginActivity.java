@@ -104,7 +104,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         register.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                registerLogin();
+                startActivity(new Intent(LoginActivity.this,SettingsActivity.class));
             }
         });
     }
@@ -202,6 +203,56 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(PhoneNo, password);
             mAuthTask.execute((Void) null);
+
+
+
+        }
+    }
+
+    private void registerLogin(){
+       /* if (mAuthTask != null) {
+            return;
+        }
+*/
+        // Reset errors.
+        mPhoneNoView.setError(null);
+        //mPasswordView.setError(null);
+
+        // Store values at the time of the login attempt.
+        String PhoneNo = mPhoneNoView.getText().toString();
+       // String password = mPasswordView.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+       /* // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+*/
+        // Check for a valid PhoneNo address.
+        if (TextUtils.isEmpty(PhoneNo)) {
+            mPhoneNoView.setError(getString(R.string.error_field_required));
+            focusView = mPhoneNoView;
+            cancel = true;
+        } else if (!isPhoneNoValid(PhoneNo)) {
+            mPhoneNoView.setError(getString(R.string.error_invalid_PhoneNo));
+            focusView = mPhoneNoView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+            showProgress(true);
+           // mAuthTask = new UserLoginTask(PhoneNo, password);
+            //mAuthTask.execute((Void) null);
 
 
 
