@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -89,8 +90,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 attemptLogin();
+                startActivity(new Intent(LoginActivity.this,ScrollingActivity.class));
             }
         });
+
+
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -154,7 +158,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid PhoneNo, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptLogin(){
         if (mAuthTask != null) {
             return;
         }
@@ -198,6 +202,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(PhoneNo, password);
             mAuthTask.execute((Void) null);
+
+
+
         }
     }
 
@@ -216,7 +223,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isPasswordValid(String password) {
-        String regexStr = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        String regexStr = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).{8,}$";
         if(password!= null && password.matches(regexStr)){
             return true;}
         //do what you need to do for valid input
@@ -329,20 +336,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
+     /*       try {
                 // Simulate network access.
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
             }
+     */
 
-            for (String credential : DUMMY_CREDENTIALS) {
+
+            for (String credential : Arrays.asList("9876543210:Aa1!zxcvasdf" /* DUMMY_CREDENTIALS*/ )) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mPhoneNo)) {
                     // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
                 }
+                if (pieces[1].equals(mPassword)) {
+                    return true;
+                }
+                else
+                return false;
             }
+
 
             // TODO: register the new account here.
             return true;

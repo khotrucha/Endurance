@@ -25,7 +25,11 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".LoginActivity" />
+            android:parentActivityName=".LoginActivity" >
+            <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.syndicate.endurance.LoginActivity" />
+        </activity>
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
