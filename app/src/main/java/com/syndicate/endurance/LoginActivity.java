@@ -193,13 +193,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isPhoneNoValid(String PhoneNo) {
-        //TODO: Replace this with your own logic
-        return PhoneNo.contains("@");
+        String regexStr = "^(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:\\(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\\s*\\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+))?$";
+        if(PhoneNo!= null && PhoneNo.matches(regexStr)){
+            return true;}
+        //do what you need to do for valid input
+        else{
+
+            return false;
+        }
+        //do what you need to do for invalid input
+
+
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        String regexStr = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        if(password!= null && password.matches(regexStr)){
+            return true;}
+        //do what you need to do for valid input
+        else{
+
+            return false;
+        }
     }
 
     /**
