@@ -402,6 +402,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             for (String credential : DUMMY_CREDENTIALS ) {
                 String[] pieces = credential.split(":");
+<<<<<<< HEAD
+                if (pieces[0].equals(mPhoneNo) && pieces[1].equals(mPassword)) {
+                    return true;
+                }
+=======
                 if (pieces[0].equals(mPhoneNo)) {
                     // Account exists, return true if the password matches.
 
@@ -410,11 +415,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }}
                 else
                 return false;
+>>>>>>> origin/master
             }
 
-
-            // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override
