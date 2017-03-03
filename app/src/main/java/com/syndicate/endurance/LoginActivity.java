@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * TODO: remove after connecting to a real authentication system.
      */
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
+            "1234567890:Hello!1hi", "9876543210:asdfA!1zxcv"
     };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -60,6 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     // UI references.
     private AutoCompleteTextView mPhoneNoView;
+    private AutoCompleteTextView mRegisterPhoneNoView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -89,9 +90,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mPhoneNoSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                if(attemptLogin()){
                 startActivity(new Intent(LoginActivity.this,ScrollingActivity.class));
-            }
+            }}
         });
 
 
@@ -99,14 +100,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        mPhoneNoView = (AutoCompleteTextView) findViewById(R.id.phone);
+        mRegisterPhoneNoView = (AutoCompleteTextView) findViewById(R.id.phone);
         Button register = (Button) findViewById(R.id.register);
         register.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerLogin();
+                if(registerLogin()){
                 startActivity(new Intent(LoginActivity.this,SettingsActivity.class));
-            }
+            }}
         });
     }
 
@@ -159,9 +160,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid PhoneNo, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin(){
+    private boolean attemptLogin(){
         if (mAuthTask != null) {
-            return;
+            return true;
         }
 
         // Reset errors.
@@ -197,29 +198,30 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
+            return false;
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(PhoneNo, password);
             mAuthTask.execute((Void) null);
-
+            return true;
 
 
         }
     }
 
-    private void registerLogin(){
+    private boolean registerLogin(){
        /* if (mAuthTask != null) {
             return;
         }
 */
         // Reset errors.
-        mPhoneNoView.setError(null);
+        mRegisterPhoneNoView.setError(null);
         //mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String PhoneNo = mPhoneNoView.getText().toString();
+        String PhoneNo = mRegisterPhoneNoView.getText().toString();
        // String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -234,12 +236,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 */
         // Check for a valid PhoneNo address.
         if (TextUtils.isEmpty(PhoneNo)) {
-            mPhoneNoView.setError(getString(R.string.error_field_required));
-            focusView = mPhoneNoView;
+            mRegisterPhoneNoView.setError(getString(R.string.error_field_required));
+            focusView = mRegisterPhoneNoView;
             cancel = true;
         } else if (!isPhoneNoValid(PhoneNo)) {
-            mPhoneNoView.setError(getString(R.string.error_invalid_PhoneNo));
-            focusView = mPhoneNoView;
+            mRegisterPhoneNoView.setError(getString(R.string.error_invalid_PhoneNo));
+            focusView = mRegisterPhoneNoView;
             cancel = true;
         }
 
@@ -247,10 +249,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
+            return false;
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
+            return true;
            // mAuthTask = new UserLoginTask(PhoneNo, password);
             //mAuthTask.execute((Void) null);
 
@@ -274,7 +278,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isPasswordValid(String password) {
-        String regexStr = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=])(?=\\S+$).{8,}$";
+        String regexStr = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@!#$%^&+=]).{8,}$";
         if(password!= null && password.matches(regexStr)){
             return true;}
         //do what you need to do for valid input
@@ -396,11 +400,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
 
 
-            for (String credential : Arrays.asList("9876543210:Aa1!zxcvasdf" /* DUMMY_CREDENTIALS*/ )) {
+            for (String credential : DUMMY_CREDENTIALS ) {
                 String[] pieces = credential.split(":");
+<<<<<<< HEAD
                 if (pieces[0].equals(mPhoneNo) && pieces[1].equals(mPassword)) {
                     return true;
                 }
+=======
+                if (pieces[0].equals(mPhoneNo)) {
+                    // Account exists, return true if the password matches.
+
+                if (pieces[1].equals(mPassword)) {
+                    break;
+                }}
+                else
+                return false;
+>>>>>>> origin/master
             }
 
             return false;
