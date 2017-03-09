@@ -3,10 +3,13 @@ package com.syndicate.endurance;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -91,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 if(attemptLogin()){
-                startActivity(new Intent(LoginActivity.this,ScrollingActivity.class));
+                startActivity(new Intent(LoginActivity.this, ScrollingActivity.class));
             }}
         });
 
@@ -106,7 +109,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 if(registerLogin()){
-                startActivity(new Intent(LoginActivity.this,SettingsActivity.class));
+                    String e164num = mRegisterPhoneNoView.getText().toString();
+
+                promptForRegistrationStart(LoginActivity.this, e164num);
             }}
         });
     }
@@ -349,6 +354,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
+    private void promptForRegistrationStart(final Context context, final String e164number) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+        dialog.setTitle(e164number);
+        dialog.setMessage(R.string.RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s);
+        dialog.setPositiveButton(getString(R.string.RegistrationActivity_continue),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(context, OtpGeneration.class);
+                        intent.putExtra(OtpGeneration.NUMBER_EXTRA, e164number);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+        dialog.setNegativeButton(getString(R.string.RegistrationActivity_edit), null);
+        dialog.show();
+    }
 
     private void addPhoneNosToAutoComplete(List<String> PhoneNoAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
@@ -405,7 +427,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 if (pieces[0].equals(mPhoneNo) && pieces[1].equals(mPassword)) {
                     return true;
                 }
-                if (pieces[0].equals(mPhoneNo)) {
+              if (pieces[0].equals(mPhoneNo)) {
                     // Account exists, return true if the password matches.
 
                 if (pieces[1].equals(mPassword)) {

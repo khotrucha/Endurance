@@ -39,6 +39,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.syndicate.endurance.LoginActivity" />
         </activity>
+       <!-- <activity
+            android:name=".RegistrationProgressActivity"
+            android:label="@string/title_activity_otp_generation"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.syndicate.endurance.LoginActivity" />
+        </activity>-->
         <activity
             android:name=".OtpGeneration"
             android:label="@string/title_activity_otp_generation"

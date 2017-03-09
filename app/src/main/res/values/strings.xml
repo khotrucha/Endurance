@@ -180,5 +180,73 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_otp_generation">OtpGeneration</string>
+    <string name="otp_number_hint">Enter OTP received</string>
+    <string name="registration_progress_activity__alert">Alert</string>
+    <string name="registration_progress_activity__sms_verification_failed">SMS verification failed.</string>
+    <string name="registration_progress_activity__signal_timed_out_while_waiting_for_a_verification_sms_message">Signal timed out while waiting for a verification SMS message.</string>
+    <string name="RegistrationActivity_we_will_now_verify_that_the_following_number_is_associated_with_your_device_s">We will verify this number
+    by sending an OTP to it. Please check the number and then continue.</string>
+    <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_edit">Edit</string>
+    <string name="registration_progress_activity__telephone">Telephone</string>
+    <string name="registration_progress_activity__voice_verification">Voice verification</string>
+    <string name="registration_progress_activity__signal_can_also_call_you_to_verify_your_number">
+        Signal can also call you to verify your number. Tap \'Call Me\' and enter the six digit
+        code that you hear below.</string>
+    <string name="registration_progress_activity__verify">Verify</string>
+    <string name="registration_progress_activity__call_me">Call me</string>
+    <string name="registration_progress_activity__edit_number">Edit number</string>
+    <string name="registration_progress_activity__connectivity_error">Connectivity error.</string>
+    <string name="registration_progress_activity__signal_was_unable_to_connect_to_the_server">Signal was unable to connect to the server.</string>
+    <string name="registration_progress_activity__some_possible_problems_include">Some possible
+        problems include:
+    </string>
+    <string name="registration_progress_activity__no_network_connectivity">No network
+        connectivity.
+    </string>
+    <string name="registration_progress_activity__your_device_needs_network_connectivity">Your
+        device needs network connectivity in order to use this Signal feature. Check to ensure
+        that it is connected to mobile data or Wi-Fi.
+    </string>
+    <string name="registration_progress_activity__restrictive_firewall">Restrictive firewall.
+    </string>
+    <string name="registration_progress_activity__if_you_are_connected_via_wifi_its_possible_that_there_is_a_firewall">
+        If you are connected via Wi-Fi, it\'s possible that there is a firewall blocking access to
+        the Signal server. Try another network or mobile data.
+    </string>
+    <string name="registration_progress_activity__signal_will_now_automatically_verify_your_number_with_a_confirmation_sms_message">
+        Signal will now automatically verify your number with a confirmation SMS message.
+    </string>
+    <string name="registration_progress_activity__check">Check</string>
+    <string name="registration_progress_activity__connecting">Connecting..</string>
+    <string name="registration_progress_activity__waiting_for_sms_verification">Waiting for SMS
+        verification..
+    </string>
+    <string name="registration_progress_activity__generating_keys">Generating keys..</string>
+    <string name="registration_progress_activity__registering_with_server">Registering with server..</string>
+    <string name="registration_progress_activity__this_couild_take_a_moment_please_be_patient">This
+        could take a moment. Please be patient, we\'ll notify you when verification is complete.
+    </string>
+    <string name="RegistrationProblemsActivity_possible_problems">Possible problems</string>
+    <string name="registration_problems__some_possible_problems_include">Some possible problems
+        include:
+    </string>
+    <string name="registration_problems__sms_interceptors">SMS interceptors.</string>
+    <string name="registration_problems__some_third_party_text_messaging_clients_such_as_handcent">
+        Some third party text messaging clients, such as Handcent or GoSMS, behave poorly and
+        intercept all incoming SMS messages. Check to see if you received a text message that starts
+        with \'Your Signal verification code:\', in which case you\'ll need to configure your
+        third party text messaging app to let text messages through.
+    </string>
+    <string name="registration_problems__incorrect_number">Incorrect number.</string>
+    <string name="registration_problems__please_checkt_to_make_sure_you_entered_your_number_correctly">
+        Please check to make sure you entered your number correctly, and that it is formatted correctly for
+        your region.
+    </string>
+    <string name="registration_problems__google_voice">Google Voice.</string>
+    <string name="registration_problems__signal_will_not_work_with_google_voice_numbers">
+        Signal will not work with Google Voice numbers.
+    </string>
+
 
 </resources>
