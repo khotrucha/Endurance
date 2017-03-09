@@ -427,8 +427,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 if (pieces[0].equals(mPhoneNo) && pieces[1].equals(mPassword)) {
                     return true;
                 }
-
-                if (pieces[0].equals(mPhoneNo)) {
+              if (pieces[0].equals(mPhoneNo)) {
                     // Account exists, return true if the password matches.
 
                 if (pieces[1].equals(mPassword)) {
